@@ -1,1 +1,10 @@
 Add project dependency file (requirements.txt)
+
+fastapi
+uvicorn
+beautifulsoup4
+requests
+sentence-transformers
+faiss-cpu
+transformers
+torch

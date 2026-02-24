@@ -1,9 +1,6 @@
-# Implement text chunking with overlap support
-def chunk_text(texts,size=500,overlap=100):
-    chunks=[]
-    for t in texts:
-        start=0
-        while start<len(t):
-            chunks.append(t[start:start+size])
-            start+=size-overlap
+def chunk_text(pages, size=500):
+    chunks = []
+    for page in pages:
+        for i in range(0, len(page), size):
+            chunks.append(page[i:i+size])
     return chunks

@@ -1,6 +1,12 @@
-def chunk_text(pages, size=500):
-    chunks = []
-    for page in pages:
-        for i in range(0, len(page), size):
-            chunks.append(page[i:i+size])
-    return chunks
+from langchain_text_splitters import RecursiveCharacterTextSplitter
+
+
+def chunk_text(texts):
+    splitter = RecursiveCharacterTextSplitter(
+        chunk_size=800,
+        chunk_overlap=150
+    )
+
+    docs = splitter.create_documents(texts)
+
+    return [d.page_content for d in docs]

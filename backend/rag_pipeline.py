@@ -1,30 +1,22 @@
-# Implement RAG retrieval and answer generation pipeline
-import os
-from app.db.vector_store import get_db
-from openai import OpenAI
+from transformers import pipeline
+from app.db.vector_store import db
 
-client = OpenAI()
+generator = pipeline("text2text-generation", model="google/flan-t5-base")
 
-def answer_question(question):
-    db = get_db()
+def answer_question(question: str):
 
     docs = db.similarity_search(question, k=3)
 
     context = "\n".join([d.page_content for d in docs])
 
     prompt = f"""
-Answer using context.
+    Answer based on context:
 
-Context:
-{context}
+    {context}
 
-Question:
-{question}
-"""
+    Question: {question}
+    """
 
-    res = client.chat.completions.create(
-        model="gpt-4o-mini",
-        messages=[{"role":"user","content":prompt}]
-    )
+    result = generator(prompt, max_length=256)
 
-    return res.choices[0].message.content
+    return result[0]["generated_text"]

@@ -1,17 +1,15 @@
-# Integrate FAISS vector storage and similarity search
 from langchain_community.vectorstores import Chroma
-from langchain_openai import OpenAIEmbeddings
+from langchain_community.embeddings import HuggingFaceEmbeddings
 
-db = None
+embedding_model = HuggingFaceEmbeddings(
+    model_name="sentence-transformers/all-MiniLM-L6-v2"
+)
+
+db = Chroma(
+    collection_name="rag-chatbot",
+    persist_directory="./chroma",
+    embedding_function=embedding_model
+)
 
 def get_db():
-    global db
-
-    if db is None:
-        db = Chroma(
-            collection_name="website",
-            embedding_function=OpenAIEmbeddings(),
-            persist_directory="./chroma"
-        )
-
     return db

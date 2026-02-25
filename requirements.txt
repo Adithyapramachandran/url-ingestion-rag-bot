@@ -1,10 +1,20 @@
-Add project dependency file (requirements.txt)
-
 fastapi
 uvicorn
-beautifulsoup4
+pydantic
+
 requests
-sentence-transformers
-faiss-cpu
+beautifulsoup4
+
+langchain
+langchain-community
+langchain-huggingface
+langchain-chroma
+
+chromadb
+
 transformers
+sentence-transformers
 torch
+
+python-dotenv
+openai

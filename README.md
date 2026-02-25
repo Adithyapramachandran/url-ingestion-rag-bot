@@ -36,13 +36,5 @@ The system operates entirely without external API keys by leveraging local embed
 
 ---
 
-## Setup Instructions
 
-### Option 1: Run via Google Colab
-
-Open `notebook/demo_colab.ipynb` and execute all cells.
-
-### Option 2: Run Locally
-
-1. Clone the repository:
 

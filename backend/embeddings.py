@@ -1,5 +1,10 @@
 from app.db.vector_store import get_db
 
+db = get_db()
+
 def store_documents(chunks):
-    db = get_db()
+
+    if not chunks:
+        return
+
     db.add_texts(chunks)
